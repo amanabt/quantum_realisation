@@ -6,10 +6,10 @@
 class finite_well
 {
 public:
-	finite_well (double a = 1.0,
-				 double E = 5e-8,
-				 double m = 1.0,
-				 double dx = 1e-2) :
+	finite_well (long double a = 1.0e-16,
+				 long double E = -1e-17,
+				 long double m = 9.1e-31,
+				 long double dx = 1e-20) :
 				 _a (a),
 				 _E (E),
 				 _m (m),
@@ -17,42 +17,46 @@ public:
 			{}
 
 public:
-	auto start_front (double slope_, double psi) -> double;
+	auto start_front (long double slope_, long double psi) -> long double;
 
 public:
-	auto start_back  (double slope_, double psi) -> double;
+	auto start_back  (long double slope_, long double psi) -> long double;
 	
 public:
-	void set_E (double E) { _E = E; }
+	void set_E (long double E) { _E = E; }
 	
 public:
-	auto E (void) const -> double { return _E; }
+	auto E (void) const -> long double { return _E; }
 	
 public:
-	const auto ratio (void) const -> double
+	const auto ratio (void) const -> long double
 	{ return _psi / _slope; }
 
 public:
-	bool is_eigen (double ratio) const 
-		{ std::cerr << ratio << ":" << (_psi / _slope) << ":" << (_psi / _slope) - ratio << std::endl;
-			return ((_psi / _slope) - ratio) < 0.1 && ((_psi / _slope) - ratio) > -0.1; }
+	long double psi (void) const { return this -> _psi; }
+	
+public:
+	long double slope (void) const { return this -> _slope; }
+
+public:
+	bool is_eigen (long double psi, long double slope) const;
 
 private:
-	auto second_derivative (double V) const -> double;
+	auto second_derivative (long double V) const -> long double;
 
 private:
-	void slope (double V);
+	void slope (long double V);
 
 private:
-	void write (double x, double psi) const;
+	void write (long double x, long double psi) const;
 
 private:
-	double _a;
-	double _E;
-	double _m;
-	double _dx;
-	double _psi;
-	double _slope;
+	long double _a;
+	long double _E;
+	long double _m;
+	long double _dx;
+	long double _psi;
+	long double _slope;
 };
 
 #endif
