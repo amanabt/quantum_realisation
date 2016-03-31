@@ -182,10 +182,15 @@ int main (int argc, char **argv)
 
 		factor = particle -> multiplier (psi);
 		std::string command[] = 
-			{"cd /home/chimp/Academics/quantum_realisation/code/library/src \\",
-			 " && \\",
-			 "python multiplier.py "};
+			{"cd ",
+			 " && ",
+			 " python multiplier.py "};
 		command[2] += std::to_string (factor);
+		char dir[100];
+		getcwd(dir, 100);
+		command [0] += dir;
+		command [0] += " ";
+// 		std::cerr << dir << std::endl;
 		auto cmd = (command[0] + command [1] + command [2]);
 // 		std::cerr << (command[0] + command [1] + command [2]) << std::endl;
 		utils::pipe((command[0] + command [1] + command [2]));
