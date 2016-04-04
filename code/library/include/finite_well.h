@@ -7,7 +7,7 @@ class finite_well
 {
 public:
 	finite_well (double a = 1.0,
-				 double E = -5,
+				 double E = -9.738321,
 				 double m = 1.0,
 				 double dx = 1e-4) :
 				 _a (a),
@@ -34,7 +34,10 @@ public:
 
 public:
 	bool is_eigen (double ratio) const 
-		{ std::cerr << ratio << ":" << (_psi / _slope) << ":" << (_psi / _slope) - ratio << std::endl;
+		{ std::cerr << ratio << ":" 
+					<< (_psi / _slope) << ":"
+					<< (_psi / _slope) - ratio << ":"
+					<< _E << std::endl;
 			return ((_psi / _slope) - ratio) < 1e-3 && ((_psi / _slope) - ratio) > -1e-3; }
 
 public:

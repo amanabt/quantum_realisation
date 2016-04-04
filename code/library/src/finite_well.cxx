@@ -136,7 +136,7 @@ int main (int argc, char **argv)
 {
 	int rank_;
 	std::unique_ptr<finite_well> particle (new finite_well);
-	double dE = -1e-3, E;
+	double dE = -1e-6, E;
 	double ratio;
 	double psi = 0.0, factor = 1.0;
 
